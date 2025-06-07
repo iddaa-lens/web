@@ -3,8 +3,13 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/Badge";
+import { ArrowRight, Star, Zap, Target } from "lucide-react";
 import MainContentHeader from "@/components/layout/MainContentHeader";
+import SmartMoneyMovements from "@/components/ui/SmartMoneyMovements";
+
+// Force dynamic rendering to avoid SSR serialization issues
+export const dynamic = 'force-dynamic';
 
 // Backend API response type for odds movements
 interface OddsMovement {
@@ -79,7 +84,7 @@ export default function Home() {
         
         if (response.ok) {
           const data: OddsMovement[] = await response.json();
-          setOddsMovements(data.slice(0, 4)); // Show only top 4 on homepage
+          setOddsMovements(data ? data.slice(0, 4) : []); // Show only top 4 on homepage
         } else {
           console.error('Failed to fetch odds movements');
         }
@@ -102,7 +107,7 @@ export default function Home() {
       
       if (response.ok) {
         const data: UpcomingEvent[] = await response.json();
-        setUpcomingEvents(data); // Already limited by API
+        setUpcomingEvents(data || []); // Already limited by API
       } else {
         console.error('Failed to fetch upcoming events');
       }
@@ -113,12 +118,78 @@ export default function Home() {
     }
   };
 
-  const navigateToPredictions = () => router.push("/predictions");
   const navigateToEvents = () => router.push("/events");
 
   const handleSearch = (query: string) => {
     setHomeSearchQuery(query);
   };
+
+  // Featured content for homepage - Sports store ad
+  const renderFeaturedContent = () => (
+    <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 dark:from-blue-800 dark:via-blue-900 dark:to-blue-950 rounded-xl p-5 border border-blue-500 dark:border-blue-600 shadow-lg mb-4">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-full blur-2xl"></div>
+        <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-yellow-400 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="relative z-10">
+        {/* Sponsor badge */}
+        <div className="inline-flex items-center gap-1 bg-white text-blue-700 text-xs font-bold px-3 py-1 rounded-full mb-3">
+          <Star className="w-3 h-3" />
+          SPONSORLU İÇERİK
+        </div>
+        
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex-1">
+            <h3 className="text-white font-bold text-xl mb-2">
+              Bilyoner.com - Resmi İddaa Sitesi 🏆
+            </h3>
+            <p className="text-blue-100 text-sm mb-3">
+              Türkiye&apos;nin resmi ve yasal bahis platformu - Güvenli oyun
+            </p>
+            
+            {/* Features */}
+            <div className="flex flex-wrap items-center gap-4 text-sm">
+              <div className="flex items-center gap-1">
+                <Target className="w-4 h-4 text-yellow-300" />
+                <span className="text-white font-semibold">
+                  Resmi & Yasal
+                </span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Zap className="w-4 h-4 text-yellow-300" />
+                <span className="text-white font-semibold">
+                  Hızlı Ödeme
+                </span>
+              </div>
+              <div className="text-blue-200">
+                <span className="font-semibold">Güvenli Platform</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* CTA Section */}
+          <div className="flex flex-col items-center md:items-end gap-2">
+            <Badge color="yellow" className="animate-pulse mb-1">
+              🎯 HOŞGELDİN BONUSU
+            </Badge>
+            <a href="https://bilyoner.com" target="_blank" rel="noopener noreferrer" className="inline-block">
+              <Button 
+                className="bg-white text-blue-700 hover:bg-blue-50 font-bold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all text-base"
+              >
+                Oyuna Başla
+              </Button>
+            </a>
+            <div className="text-center">
+              <span className="text-blue-200 text-sm">Yasal ve</span>
+              <span className="text-white font-bold text-lg block">Güvenli</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -140,33 +211,51 @@ export default function Home() {
         </div>
 
         <div className="divide-y divide-gray-200 dark:divide-gray-800">
-          {/* Sample Section 1 */}
+          {/* Smart Money Movements Section */}
           <div className="p-4">
             <div className="flex justify-between items-center mb-3">
-              <h2 className="text-lg font-bold">Popüler Maçlar</h2>
+              <div>
+                <h2 className="text-lg font-bold flex items-center gap-2">
+                  🧠 Akıllı Para Hareketleri
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Profesyonel bahisçilerin tespit edilen hareketleri - değer fırsatları
+                </p>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-xs bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 px-2 py-1 rounded-full font-medium">
+                    ℹ️ Kalite odaklı - hacim değil
+                  </span>
+                </div>
+              </div>
               <Button
                 variant="ghost"
-                onClick={navigateToPredictions}
+                onClick={() => router.push("/events/smart-money")}
                 className="text-iddaa-600 dark:text-iddaa-800 hover:text-iddaa-700 dark:hover:text-iddaa-600"
               >
                 Tümünü Gör
                 <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
-                  <h3 className="font-semibold mb-2">Örnek Maç {item}</h3>
-                  <p className="text-gray-600 dark:text-gray-400">Bu bir örnek maç kartıdır.</p>
-                </div>
-              ))}
-            </div>
+            <SmartMoneyMovements />
           </div>
+
 
           {/* Odds Movement Section */}
           <div className="p-4">
             <div className="flex justify-between items-center mb-3">
-              <h2 className="text-lg font-bold">En Çok Değişen Oranlar</h2>
+              <div>
+                <h2 className="text-lg font-bold flex items-center gap-2">
+                  📈 En Çok Değişen Oranlar
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Piyasa momentum - büyük hacimli oran değişiklikleri
+                </p>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-xs bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 px-2 py-1 rounded-full font-medium">
+                    📊 Hacim odaklı - piyasa hareketi
+                  </span>
+                </div>
+              </div>
               <Button
                 variant="ghost"
                 onClick={() => router.push("/events/odds/movements")}
@@ -176,183 +265,151 @@ export default function Home() {
                 <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {isLoadingOdds ? (
-                // Loading state
+                // Loading state - mobile optimized
                 [...Array(4)].map((_, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm">
+                  <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-3 md:p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                     <div className="animate-pulse">
-                      <div className="flex justify-between items-start mb-3">
+                      <div className="flex justify-between items-start mb-2">
                         <div className="flex-1">
-                          <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded w-3/4 mb-2"></div>
-                          <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mb-2"></div>
-                          <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
+                          <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-3/4 mb-2"></div>
+                          <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
                         </div>
-                        <div className="text-right">
-                          <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded w-24 mb-2"></div>
-                          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-16"></div>
-                        </div>
+                        <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-16"></div>
                       </div>
+                      <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
+                      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/3"></div>
                     </div>
                   </div>
                 ))
               ) : oddsMovements.length > 0 ? (
-                // Real data
+                // Real data with featured content
                 oddsMovements.map((movement, index) => (
-                  <div key={`${movement.event_slug}-${movement.market}-${movement.outcome}-${index}`} className="group bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg hover:border-iddaa-300 dark:hover:border-iddaa-600 transition-all duration-200 cursor-pointer">
-                    {/* Header with match info and live status */}
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-3">
-                          <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-iddaa-600 dark:group-hover:text-iddaa-800 transition-colors">
+                  <div key={`odds-section-${index}`}>
+                    {/* Insert featured content after first item */}
+                    {index === 1 && renderFeaturedContent()}
+                    <div className="group bg-white dark:bg-gray-800 rounded-lg p-3 md:p-4 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-iddaa-300 dark:hover:border-iddaa-600 transition-all duration-200 cursor-pointer">
+                    {/* Mobile-first responsive layout */}
+                    <div className="space-y-3">
+                      {/* Header row - match name and badges */}
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-gray-900 dark:text-white text-sm md:text-base group-hover:text-iddaa-600 dark:group-hover:text-iddaa-800 transition-colors truncate">
                             {movement.match}
                           </h3>
+                          {/* Mobile: League and sport info on second line */}
+                          <div className="flex items-center gap-2 mt-1 text-xs text-gray-600 dark:text-gray-400">
+                            <span className="font-medium">{movement.league}</span>
+                            <span>•</span>
+                            <span>{movement.sport}</span>
+                            {movement.league_country && (
+                              <>
+                                <span>•</span>
+                                <span>({movement.league_country})</span>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        
+                        {/* Badges row */}
+                        <div className="flex items-center gap-1.5 flex-shrink-0">
                           {movement.is_live && (
-                            <div className="flex items-center gap-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-2 py-1 rounded-full text-xs font-bold">
-                              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                            <div className="flex items-center gap-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-1.5 py-0.5 rounded-full text-xs font-bold">
+                              <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
                               CANLI
                               {movement.minute_of_match && <span className="ml-1">{movement.minute_of_match}&apos;</span>}
                             </div>
                           )}
                           {movement.home_score !== undefined && movement.away_score !== undefined && (
-                            <div className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-sm font-bold text-gray-900 dark:text-white">
+                            <div className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs font-bold text-gray-900 dark:text-white">
                               {movement.home_score} - {movement.away_score}
                             </div>
                           )}
                         </div>
-                        
-                        {/* League and sport info */}
-                        <div className="flex items-center gap-4 mb-3">
-                          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                            <div className="flex items-center gap-1">
-                              <span className="w-2 h-2 bg-iddaa-600 rounded-full"></span>
-                              <span className="font-medium">{movement.league}</span>
-                              {movement.league_country && (
-                                <span className="text-xs">({movement.league_country})</span>
-                              )}
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                            </svg>
-                            <span>{movement.sport}</span>
-                          </div>
-                        </div>
-                        
-                        {/* Market and betting volume */}
-                        <div className="flex items-center gap-3">
-                          <div className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded-full">
-                            <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                              {movement.market}
-                            </span>
+                      </div>
+
+                      {/* Market and odds row - responsive */}
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        {/* Left side - Market info */}
+                        <div className="flex items-center gap-2 text-xs">
+                          <div className="inline-flex items-center gap-1.5 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
+                            <span className="font-medium text-gray-700 dark:text-gray-300">{movement.market}</span>
                             {movement.outcome && (
                               <>
                                 <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                                <span className="text-xs font-bold text-iddaa-600 dark:text-iddaa-800">
-                                  {movement.outcome}
-                                </span>
+                                <span className="font-bold text-iddaa-600 dark:text-iddaa-800">{movement.outcome}</span>
                               </>
                             )}
                           </div>
                           {movement.betting_volume_percent && (
-                            <div className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400">
+                            <div className="flex items-center gap-1 text-amber-600 dark:text-amber-400">
                               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
-                              <span className="font-medium">%{movement.betting_volume_percent.toFixed(1)} bahis hacmi</span>
+                              <span className="font-medium">%{movement.betting_volume_percent.toFixed(1)}</span>
                             </div>
                           )}
+                        </div>
+                        
+                        {/* Right side - Odds display */}
+                        <div className="flex items-center gap-2 text-sm">
+                          <span className="text-gray-500 dark:text-gray-400 line-through">
+                            {movement.opening_odds.toFixed(2)}
+                          </span>
+                          <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                          <span className="font-bold text-gray-900 dark:text-white">
+                            {movement.current_odds.toFixed(2)}
+                          </span>
+                          <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold ${
+                            movement.direction === 'STEAMING' 
+                              ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
+                              : movement.direction === 'SHORTENING'
+                              ? 'bg-iddaa-100 text-iddaa-700 dark:bg-iddaa-900/30 dark:text-iddaa-400'
+                              : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                          }`}>
+                            {movement.direction === 'STEAMING' ? '↗' : '↙'}
+                            {Math.abs(movement.change_percentage).toFixed(0)}%
+                          </div>
                         </div>
                       </div>
                       
-                      {/* Odds change section */}
-                      <div className="text-right ml-6">
-                        <div className="flex items-center justify-end gap-4 mb-3">
-                          <div className="text-center">
-                            <div className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">Eski Oran</div>
-                            <div className="text-base text-gray-500 line-through font-mono bg-gray-50 dark:bg-gray-700 px-2 py-1 rounded">
-                              {movement.opening_odds.toFixed(2)}
-                            </div>
-                          </div>
-                          <div className="flex items-center">
-                            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                          </div>
-                          <div className="text-center">
-                            <div className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">Yeni Oran</div>
-                            <div className="text-xl font-bold text-gray-900 dark:text-white font-mono bg-iddaa-50 dark:bg-iddaa-900/20 px-3 py-2 rounded border-2 border-iddaa-200 dark:border-iddaa-700">
-                              {movement.current_odds.toFixed(2)}
-                            </div>
-                          </div>
+                      {/* Bottom info bar - mobile responsive */}
+                      <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-1 xs:gap-2 pt-2 border-t border-gray-100 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400">
+                        <div className="flex items-center gap-3">
+                          <span>🕐 {new Date(movement.last_updated).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}</span>
+                          <span>•</span>
+                          <span>📅 {new Date(movement.event_time).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })}</span>
                         </div>
-                        
-                        {/* Change indicator */}
-                        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold ${
-                          movement.direction === 'STEAMING' 
-                            ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
-                            : movement.direction === 'SHORTENING'
-                            ? 'bg-iddaa-100 text-iddaa-700 dark:bg-iddaa-900/30 dark:text-iddaa-400'
-                            : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                        <div className={`flex items-center gap-1 font-medium ${
+                          movement.direction === 'STEAMING' ? 'text-green-600 dark:text-green-400' : 
+                          movement.direction === 'SHORTENING' ? 'text-iddaa-600 dark:text-iddaa-800' :
+                          'text-red-600 dark:text-red-400'
                         }`}>
-                          {movement.direction === 'STEAMING' ? (
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                            </svg>
-                          ) : (
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                          )}
-                          <span>
-                            {movement.direction === 'STEAMING' ? '+' : ''}{movement.change_percentage.toFixed(1)}%
-                          </span>
+                          {movement.direction === 'STEAMING' && '🔥 Yoğun İlgi'}
+                          {movement.direction === 'SHORTENING' && '⚡ Hızlı Düşüş'}
+                          {movement.direction === 'DRIFTING' && '❄️ Azalan İlgi'}
                         </div>
                       </div>
                     </div>
-                    
-                    {/* Bottom info bar */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
-                      <div className="flex items-center gap-6 text-xs text-gray-500 dark:text-gray-400">
-                        <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span>Güncelleme: {new Date(movement.last_updated).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                          <span>Maç: {new Date(movement.event_time).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span>
-                        </div>
-                      </div>
-                      <div className={`flex items-center gap-1 text-sm font-medium ${
-                        movement.direction === 'STEAMING' ? 'text-green-600 dark:text-green-400' : 
-                        movement.direction === 'SHORTENING' ? 'text-iddaa-600 dark:text-iddaa-800' :
-                        'text-red-600 dark:text-red-400'
-                      }`}>
-                        {movement.direction === 'STEAMING' && '🔥 Yoğun İlgi'}
-                        {movement.direction === 'SHORTENING' && '⚡ Hızlı Düşüş'}
-                        {movement.direction === 'DRIFTING' && '❄️ Azalan İlgi'}
-                      </div>
                     </div>
                   </div>
                 ))
               ) : (
                 // No data state
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-8 border border-gray-200 dark:border-gray-600 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center">
-                    <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6 md:p-8 border border-gray-200 dark:border-gray-600 text-center">
+                  <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 md:w-8 md:h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h4 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-1 md:mb-2">
                     Büyük Hareket Yok
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Şu anda büyük oran değişikliği bulunmuyor. Yeni hareketler olduğunda burada görünecek.
+                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
+                    Şu anda büyük oran değişikliği bulunmuyor.
                   </p>
                 </div>
               )}

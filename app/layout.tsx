@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/ui/Toast";
 import LeftSidebar from "@/components/layout/LeftSidebar";
+import RightSidebar from "@/components/layout/RightSidebar";
 import MobileLayout from "@/components/layout/MobileLayout";
 
 // Load fonts
@@ -55,9 +56,9 @@ export default function RootLayout({
               <MobileLayout>{children}</MobileLayout>
             </div>
 
-            {/* Desktop layout: centered with sidebar */}
-            <div className="hidden md:flex justify-center w-full">
-              <div className="flex w-full max-w-[1315px]">
+            {/* Desktop layout: with margins */}
+            <div className="hidden md:flex w-full px-4 lg:px-8 xl:px-12">
+              <div className="flex w-full max-w-screen-2xl mx-auto">
                 {/* Left sidebar */}
                 <div className="sidebar-left sticky top-0 h-screen overflow-y-auto">
                   <LeftSidebar />
@@ -67,6 +68,11 @@ export default function RootLayout({
                 <main className="main-content border-x border-gray-200 dark:border-gray-800 min-h-screen">
                   {children}
                 </main>
+
+                {/* Right sidebar - hidden on smaller screens */}
+                <div className="sidebar-right sticky top-0 h-screen hidden lg:block">
+                  <RightSidebar />
+                </div>
               </div>
             </div>
           </div>

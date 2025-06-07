@@ -2,17 +2,15 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Home,
-  Brain,
-  Trophy,
-  MessageCircle,
   TrendingUp,
   Calendar,
+  Activity,
   Sun,
   Moon,
+  Search,
 } from "lucide-react";
 
 export default function LeftSidebar() {
@@ -40,9 +38,7 @@ export default function LeftSidebar() {
     { href: "/", label: "Ana Sayfa", icon: Home },
     { href: "/events", label: "Etkinlikler", icon: Calendar },
     { href: "/events/odds/movements", label: "Oran Hareketleri", icon: TrendingUp },
-    { href: "/about", label: "Hakkında", icon: Brain },
-    { href: "/features", label: "Özellikler", icon: Trophy },
-    { href: "/contact", label: "İletişim", icon: MessageCircle },
+    { href: "/events/smart-money", label: "Akıllı Para", icon: Activity },
   ];
 
   return (
@@ -51,14 +47,11 @@ export default function LeftSidebar() {
         <Link href="/" className="block">
           {/* Header content */}
           <div className="flex flex-col">
-            {/* Logo and main title on same line */}
+            {/* Search icon and main title on same line */}
             <div className="flex items-center">
-              <Image
-                src="/logo-200.png"
-                alt="IddaaLens Logo"
-                width={30}
-                height={30}
-                className="mr-1"
+              <Search
+                size={24}
+                className="mr-2 text-iddaa-600 dark:text-iddaa-800"
               />
               <h1 className="text-2xl font-bold text-iddaa-600 dark:text-iddaa-800">
                 IddaaLens

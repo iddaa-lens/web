@@ -8,6 +8,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/Button";
 import { Pagination } from "@/components/ui/Pagination";
 
+// Force dynamic rendering to avoid SSR serialization issues
+export const dynamic = 'force-dynamic';
+
 // Event interface matching backend API response
 interface Event {
   id: number;
@@ -105,12 +108,12 @@ export default function EventsPage() {
       if (response.ok) {
         const data: PaginatedEventsResponse = await response.json();
         
-        setEvents(data.data);
+        setEvents(data.data || []);
         setPagination(data.pagination);
 
         // Extract unique sports and leagues for filter options
         // We'll do this on the first load or when filters change
-        if (page === 1) {
+        if (page === 1 && data.data) {
           const uniqueSports = Array.from(
             new Set(data.data.map((e) => e.sport))
           ).sort();

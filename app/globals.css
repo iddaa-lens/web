@@ -14,7 +14,7 @@
   --color-iddaa-950: #0A2F0A;
 }
 
-/* Iddaa Color System */
+/* Mobile-first CSS variables */
 :root {
   /* Light mode colors */
   --color-primary: #00A854;           /* Iddaa green */
@@ -32,6 +32,7 @@
   
   /* Layout variables */
   --sidebar-left-width: 275px;
+  --sidebar-right-width: 320px;
   --main-content-width: 1000px;
 }
 
@@ -103,23 +104,35 @@ main, p, span, div:not(.no-select) {
   flex-shrink: 0;
 }
 
+.sidebar-right {
+  width: var(--sidebar-right-width);
+  flex-shrink: 0;
+}
+
 /* Tablet adjustments */
 @media (min-width: 768px) and (max-width: 1023px) {
   :root {
     --sidebar-left-width: 250px;
-    --main-content-width: calc(100vw - 250px - 2px);
+    --sidebar-right-width: 0px;
+    --main-content-width: calc(100% - var(--sidebar-left-width));
   }
   
   .main-content {
     width: var(--main-content-width);
     max-width: var(--main-content-width);
   }
+  
+  .sidebar-right {
+    display: none;
+  }
 }
 
 /* Desktop adjustments */
-@media (min-width: 1024px) and (max-width: 1279px) {
+@media (min-width: 1024px) and (max-width: 1399px) {
   :root {
-    --main-content-width: calc(1315px - 275px);
+    --sidebar-left-width: 280px;
+    --sidebar-right-width: 280px;
+    --main-content-width: calc(100% - var(--sidebar-left-width) - var(--sidebar-right-width));
   }
   
   .main-content {
@@ -129,9 +142,11 @@ main, p, span, div:not(.no-select) {
 }
 
 /* Large desktop */
-@media (min-width: 1280px) {
+@media (min-width: 1400px) {
   :root {
-    --main-content-width: 1040px;
+    --sidebar-left-width: 300px;
+    --sidebar-right-width: 300px;
+    --main-content-width: calc(100% - var(--sidebar-left-width) - var(--sidebar-right-width));
   }
   
   .main-content {

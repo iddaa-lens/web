@@ -1,5 +1,10 @@
+"use client";
+
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+
+// Force dynamic rendering to avoid SSR serialization issues
+export const dynamic = 'force-dynamic';
 
 export default function NotFound() {
   return (
