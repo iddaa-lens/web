@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Mobile-first CSS variables */
+:root {
+  --sidebar-left-width: 275px;
+  --main-content-width: 1000px;
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Ensure all containers respect mobile viewport */
+* {
+  box-sizing: border-box;
+}
+
+/* Mobile app-like behavior */
+body {
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection in content areas */
+main, p, span, div:not(.no-select) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Safe area support for modern mobile devices */
+.safe-area-inset {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Ensure mobile navigation respects safe area */
+@media (max-width: 768px) {
+  .mobile-nav-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Mobile: Full width, no constraints */
+.main-content {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.sidebar-left {
+  width: var(--sidebar-left-width);
+  flex-shrink: 0;
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --sidebar-left-width: 250px;
+    --main-content-width: calc(100vw - 250px - 2px);
+  }
+  
+  .main-content {
+    width: var(--main-content-width);
+    max-width: var(--main-content-width);
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  :root {
+    --main-content-width: calc(1315px - 275px);
+  }
+  
+  .main-content {
+    width: var(--main-content-width);
+    max-width: var(--main-content-width);
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1280px) {
+  :root {
+    --main-content-width: 1040px;
+  }
+  
+  .main-content {
+    width: var(--main-content-width);
+    max-width: var(--main-content-width);
+  }
+}
+
+/* Rest of your existing CSS remains unchanged */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
