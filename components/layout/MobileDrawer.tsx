@@ -94,18 +94,18 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             <Link href="/" onClick={onClose} className="block">
               <div className="flex items-center">
                 <Image
-                  src="/logo_transparent_larger.png"
-                  alt="SignalOdds Logo"
+                  src="/logo-200.png"
+                  alt="IddaaLens Logo"
                   width={32}
                   height={32}
                   className="mr-3"
                 />
                 <div>
-                  <h1 className="text-xl font-bold text-blue-600 dark:text-blue-400">
-                    SignalOdds
+                  <h1 className="text-xl font-bold text-iddaa-600 dark:text-iddaa-800">
+                    IddaaLens
                   </h1>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    AI signals. Bettor wins.
+                    Bahis analiz paneli
                   </p>
                 </div>
               </div>
@@ -113,7 +113,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+              className="p-2 hover:bg-iddaa-50 dark:hover:bg-iddaa-950 rounded-full transition-colors"
             >
               <X size={20} className="text-gray-500 dark:text-gray-400" />
             </button>
@@ -131,8 +131,8 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                 onClick={onClose}
                 className={`flex items-center px-4 py-3 rounded-xl transition-colors ${
                   isActive(item.href)
-                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-semibold"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    ? "bg-iddaa-100 dark:bg-iddaa-900/30 text-iddaa-600 dark:text-iddaa-800 font-semibold"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-iddaa-50 dark:hover:bg-iddaa-950"
                 }`}
               >
                 <Icon size={22} className="mr-4" />
@@ -168,7 +168,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join Telegram Channel"
-              className="rounded-full p-3 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
+              className="rounded-full p-3 hover:bg-iddaa-100 dark:hover:bg-iddaa-900 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

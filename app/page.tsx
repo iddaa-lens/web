@@ -133,9 +133,9 @@ export default function Home() {
       <div className="space-y-6">
         {/* Hero Section */}
         <div className="p-4">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-r from-iddaa-600 to-iddaa-700 rounded-lg p-6 text-white">
             <h1 className="text-2xl font-bold mb-2">IddaaLens</h1>
-            <p className="text-blue-100">Bahis analiz paneli</p>
+            <p className="text-iddaa-100">Bahis analiz paneli</p>
           </div>
         </div>
 
@@ -147,7 +147,7 @@ export default function Home() {
               <Button
                 variant="ghost"
                 onClick={navigateToPredictions}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                className="text-iddaa-600 dark:text-iddaa-800 hover:text-iddaa-700 dark:hover:text-iddaa-600"
               >
                 Tümünü Gör
                 <ArrowRight className="ml-1 h-4 w-4" />
@@ -170,7 +170,7 @@ export default function Home() {
               <Button
                 variant="ghost"
                 onClick={() => router.push("/events/odds/movements")}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                className="text-iddaa-600 dark:text-iddaa-800 hover:text-iddaa-700 dark:hover:text-iddaa-600"
               >
                 Tümünü Gör
                 <ArrowRight className="ml-1 h-4 w-4" />
@@ -199,12 +199,12 @@ export default function Home() {
               ) : oddsMovements.length > 0 ? (
                 // Real data
                 oddsMovements.map((movement, index) => (
-                  <div key={`${movement.event_slug}-${movement.market}-${movement.outcome}-${index}`} className="group bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 cursor-pointer">
+                  <div key={`${movement.event_slug}-${movement.market}-${movement.outcome}-${index}`} className="group bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg hover:border-iddaa-300 dark:hover:border-iddaa-600 transition-all duration-200 cursor-pointer">
                     {/* Header with match info and live status */}
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-3">
-                          <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-iddaa-600 dark:group-hover:text-iddaa-800 transition-colors">
                             {movement.match}
                           </h3>
                           {movement.is_live && (
@@ -225,7 +225,7 @@ export default function Home() {
                         <div className="flex items-center gap-4 mb-3">
                           <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                             <div className="flex items-center gap-1">
-                              <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                              <span className="w-2 h-2 bg-iddaa-600 rounded-full"></span>
                               <span className="font-medium">{movement.league}</span>
                               {movement.league_country && (
                                 <span className="text-xs">({movement.league_country})</span>
@@ -249,7 +249,7 @@ export default function Home() {
                             {movement.outcome && (
                               <>
                                 <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                                <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
+                                <span className="text-xs font-bold text-iddaa-600 dark:text-iddaa-800">
                                   {movement.outcome}
                                 </span>
                               </>
@@ -282,7 +282,7 @@ export default function Home() {
                           </div>
                           <div className="text-center">
                             <div className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-1">Yeni Oran</div>
-                            <div className="text-xl font-bold text-gray-900 dark:text-white font-mono bg-blue-50 dark:bg-blue-900/20 px-3 py-2 rounded border-2 border-blue-200 dark:border-blue-700">
+                            <div className="text-xl font-bold text-gray-900 dark:text-white font-mono bg-iddaa-50 dark:bg-iddaa-900/20 px-3 py-2 rounded border-2 border-iddaa-200 dark:border-iddaa-700">
                               {movement.current_odds.toFixed(2)}
                             </div>
                           </div>
@@ -293,7 +293,7 @@ export default function Home() {
                           movement.direction === 'STEAMING' 
                             ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
                             : movement.direction === 'SHORTENING'
-                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                            ? 'bg-iddaa-100 text-iddaa-700 dark:bg-iddaa-900/30 dark:text-iddaa-400'
                             : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
                         }`}>
                           {movement.direction === 'STEAMING' ? (
@@ -330,7 +330,7 @@ export default function Home() {
                       </div>
                       <div className={`flex items-center gap-1 text-sm font-medium ${
                         movement.direction === 'STEAMING' ? 'text-green-600 dark:text-green-400' : 
-                        movement.direction === 'SHORTENING' ? 'text-blue-600 dark:text-blue-400' :
+                        movement.direction === 'SHORTENING' ? 'text-iddaa-600 dark:text-iddaa-800' :
                         'text-red-600 dark:text-red-400'
                       }`}>
                         {movement.direction === 'STEAMING' && '🔥 Yoğun İlgi'}
@@ -366,7 +366,7 @@ export default function Home() {
               <Button
                 variant="ghost"
                 onClick={navigateToEvents}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                className="text-iddaa-600 dark:text-iddaa-800 hover:text-iddaa-700 dark:hover:text-iddaa-600"
               >
                 Tüm Etkinlikler
                 <ArrowRight className="ml-1 h-4 w-4" />
@@ -393,7 +393,7 @@ export default function Home() {
               ) : upcomingEvents.length > 0 ? (
                 // Real data
                 upcomingEvents.map((event) => (
-                  <div key={event.slug} className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-colors cursor-pointer">
+                  <div key={event.slug} className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700 hover:border-iddaa-300 dark:hover:border-iddaa-600 transition-colors cursor-pointer">
                     <div className="flex justify-between items-center">
                       <div className="flex-1">
                         <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
@@ -401,7 +401,7 @@ export default function Home() {
                         </h3>
                         <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
                           <div className="flex items-center gap-1">
-                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                            <span className="w-2 h-2 bg-iddaa-600 rounded-full"></span>
                             <span>{event.league}</span>
                             {event.league_country && (
                               <span className="text-xs">({event.league_country})</span>

@@ -1,9 +1,54 @@
 @import "tailwindcss";
 
-/* Mobile-first CSS variables */
+@theme {
+  --color-iddaa-50: #E8F5E8;
+  --color-iddaa-100: #C8E6C8;
+  --color-iddaa-200: #A4D4A4;
+  --color-iddaa-300: #81C784;
+  --color-iddaa-400: #66BB6A;
+  --color-iddaa-500: #4CAF50;
+  --color-iddaa-600: #00A854;
+  --color-iddaa-700: #008A45;
+  --color-iddaa-800: #00C766;
+  --color-iddaa-900: #1B5E20;
+  --color-iddaa-950: #0A2F0A;
+}
+
+/* Iddaa Color System */
 :root {
+  /* Light mode colors */
+  --color-primary: #00A854;           /* Iddaa green */
+  --color-primary-hover: #008A45;     /* Darker green on hover */
+  --color-secondary: #E8F5E8;         /* Very light green */
+  --color-accent: #4CAF50;            /* Success green */
+  --color-background: #FFFFFF;        /* Pure white */
+  --color-surface: #F8FBF8;           /* Light green tint */
+  --color-text-primary: #1A1A1A;      /* Dark text */
+  --color-text-secondary: #666666;    /* Gray text */
+  --color-border: #E0E0E0;            /* Light gray borders */
+  --color-success: #4CAF50;           /* Green for positive */
+  --color-warning: #FF9800;           /* Orange for warnings */
+  --color-error: #F44336;             /* Red for negative */
+  
+  /* Layout variables */
   --sidebar-left-width: 275px;
   --main-content-width: 1000px;
+}
+
+/* Dark mode colors */
+.dark {
+  --color-primary: #00C766;           /* Brighter green for dark */
+  --color-primary-hover: #00A854;     /* Original green on hover */
+  --color-secondary: #0A2F0A;         /* Dark green backgrounds */
+  --color-accent: #66BB6A;            /* Muted success green */
+  --color-background: #0F1419;        /* Very dark background */
+  --color-surface: #1A2F1A;           /* Dark with green undertone */
+  --color-text-primary: #FFFFFF;      /* White text */
+  --color-text-secondary: #B0B0B0;    /* Light gray text */
+  --color-border: #2A2A2A;            /* Dark gray borders */
+  --color-success: #66BB6A;           /* Muted green for positive */
+  --color-warning: #FFB74D;           /* Lighter orange */
+  --color-error: #EF5350;             /* Lighter red */
 }
 
 /* Prevent horizontal scroll on mobile */

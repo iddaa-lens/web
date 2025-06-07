@@ -238,7 +238,7 @@ export default function EventsPage() {
                   </SelectItem>
                   <SelectItem value="scheduled">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-blue-500" />
+                      <Clock className="w-4 h-4 text-iddaa-600" />
                       Programlanmış Maçlar
                     </div>
                   </SelectItem>
@@ -265,7 +265,7 @@ export default function EventsPage() {
                   </SelectItem>
                   <SelectItem value="tomorrow">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-blue-500" />
+                      <Calendar className="w-4 h-4 text-iddaa-600" />
                       Yarın
                     </div>
                   </SelectItem>
@@ -298,8 +298,8 @@ export default function EventsPage() {
                     <span className="text-red-600 dark:text-red-400">{events.filter(e => e.is_live).length} canlı</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-blue-500" />
-                    <span className="text-blue-600 dark:text-blue-400">{events.filter(e => !e.is_live).length} programlanmış</span>
+                    <Clock className="w-3 h-3 text-iddaa-600" />
+                    <span className="text-iddaa-600 dark:text-iddaa-800">{events.filter(e => !e.is_live).length} programlanmış</span>
                   </div>
                 </div>
               </div>
@@ -307,7 +307,7 @@ export default function EventsPage() {
             <Button
               variant="ghost"
               onClick={resetFilters}
-              className="text-blue-600 dark:text-blue-400"
+              className="text-iddaa-600 dark:text-iddaa-800"
             >
               Filtreleri Temizle
             </Button>
@@ -320,7 +320,7 @@ export default function EventsPage() {
           {isLoading && events.length > 0 && (
             <div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50 z-10 flex items-center justify-center">
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-iddaa-600"></div>
               </div>
             </div>
           )}
@@ -341,7 +341,7 @@ export default function EventsPage() {
             events.map((event) => (
               <div
                 key={event.slug}
-                className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 cursor-pointer hover:shadow-md"
+                className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700 hover:border-iddaa-300 dark:hover:border-iddaa-600 transition-all duration-200 cursor-pointer hover:shadow-md"
               >
                 {/* Event Header */}
                 <div className="flex justify-between items-start mb-3">
@@ -373,7 +373,7 @@ export default function EventsPage() {
                 {/* League and Sport Info */}
                 <div className="space-y-2 mb-3">
                   <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-2 h-2 bg-iddaa-600 rounded-full"></span>
                     <span className="font-medium">{event.league}</span>
                     {event.league_country && (
                       <span className="text-xs">({event.league_country})</span>

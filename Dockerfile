@@ -21,30 +21,26 @@ ENV NEXT_PUBLIC_API_URL=https://api.iddaalens.com
 # Build the application
 RUN npm run build
 
-# Production image, copy all the files and run next
-FROM base AS runner
+# Production image - use distroless for minimal size
+FROM gcr.io/distroless/nodejs22-debian12 AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
+# Copy the Next.js standalone build
+COPY --from=builder --chown=65532:65532 /app/.next/standalone ./
+COPY --from=builder --chown=65532:65532 /app/.next/static ./.next/static
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Copy only optimized public assets
+COPY --from=builder --chown=65532:65532 /app/public/logo-200.png ./public/
+COPY --from=builder --chown=65532:65532 /app/public/logo-64.png ./public/
+COPY --from=builder --chown=65532:65532 /app/public/*.svg ./public/
 
-COPY --from=builder /app/public ./public
-
-# Set the correct permission for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-# Automatically leverage output traces to reduce image size
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
+# Use distroless non-root user (65532)
+USER 65532
 
 EXPOSE 3000
 
+ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["node", "server.js"]
+CMD ["server.js"]

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -10,10 +11,27 @@ import {
   MessageCircle,
   TrendingUp,
   Calendar,
+  Sun,
+  Moon,
 } from "lucide-react";
 
 export default function LeftSidebar() {
   const pathname = usePathname();
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains('dark'));
+  }, []);
+
+  const toggleTheme = () => {
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      setIsDark(true);
+    }
+  };
 
   const isActive = (path: string) => pathname === path;
 
@@ -36,19 +54,19 @@ export default function LeftSidebar() {
             {/* Logo and main title on same line */}
             <div className="flex items-center">
               <Image
-                src="/logo_transparent_larger.png"
-                alt="Web Logo"
+                src="/logo-200.png"
+                alt="IddaaLens Logo"
                 width={30}
                 height={30}
                 className="mr-1"
               />
-              <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <h1 className="text-2xl font-bold text-iddaa-600 dark:text-iddaa-800">
                 IddaaLens
               </h1>
             </div>
 
             {/* Tagline on second line */}
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-2">
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 ml-2">
               Bahis analiz paneli
             </p>
           </div>
@@ -62,9 +80,9 @@ export default function LeftSidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center px-4 py-3 text-xl rounded-full transition-colors hover:bg-gray-200 dark:hover:bg-gray-800 ${
+              className={`flex items-center px-4 py-3 text-xl rounded-full transition-colors hover:bg-iddaa-50 dark:hover:bg-iddaa-950 ${
                 isActive(item.href)
-                  ? "font-bold"
+                  ? "font-bold text-iddaa-600 bg-iddaa-100 dark:text-iddaa-800 dark:bg-iddaa-900"
                   : "font-normal text-gray-900 dark:text-gray-100"
               }`}
             >
@@ -76,8 +94,20 @@ export default function LeftSidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="text-center mt-4 mb-2">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
+      <div className="mt-4 mb-2 space-y-3">
+        {/* Theme Toggle */}
+        <div className="flex justify-center">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg bg-iddaa-50 hover:bg-iddaa-100 dark:bg-iddaa-950 dark:hover:bg-iddaa-900 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun size={18} className="text-iddaa-600 dark:text-iddaa-400" /> : <Moon size={18} className="text-iddaa-600" />}
+          </button>
+        </div>
+        
+        {/* Version */}
+        <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
           IddaaLens v1.0
         </p>
       </div>

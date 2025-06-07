@@ -58,14 +58,14 @@ const Toast: React.FC<ToastProps & { onClose: () => void }> = ({
       "bg-red-50 border-red-500 text-red-700 dark:bg-red-900/20 dark:border-red-600 dark:text-red-400",
     warning:
       "bg-yellow-50 border-yellow-500 text-yellow-700 dark:bg-yellow-900/20 dark:border-yellow-600 dark:text-yellow-400",
-    info: "bg-blue-50 border-blue-500 text-blue-700 dark:bg-blue-900/20 dark:border-blue-600 dark:text-blue-400",
+    info: "bg-iddaa-50 border-iddaa-500 text-iddaa-700 dark:bg-iddaa-900/20 dark:border-iddaa-600 dark:text-iddaa-400",
   }[status];
 
   const iconClasses = {
     success: "text-green-500 dark:text-green-400",
     error: "text-red-500 dark:text-red-400",
     warning: "text-yellow-500 dark:text-yellow-400",
-    info: "text-blue-500 dark:text-blue-400",
+    info: "text-iddaa-500 dark:text-iddaa-400",
   }[status];
 
   return (

@@ -10,7 +10,7 @@ export default function RightSidebar() {
         <input
           type="text"
           placeholder="Search SignalOdds"
-          className="w-full bg-gray-100 dark:bg-gray-800 rounded-full py-3 px-12 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full bg-gray-100 dark:bg-gray-800 rounded-full py-3 px-12 focus:outline-none focus:ring-2 focus:ring-iddaa-600"
         />
         <Search
           className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
@@ -45,7 +45,7 @@ export default function RightSidebar() {
               className="p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
             >
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                <div className="w-10 h-10 rounded-full bg-iddaa-100 flex items-center justify-center mr-3">
                   <span className="font-semibold">M{item}</span>
                 </div>
                 <div className="flex-1">

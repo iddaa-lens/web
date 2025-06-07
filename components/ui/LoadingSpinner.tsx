@@ -43,7 +43,7 @@ const LoadingSpinner = ({
   // Map color to styles
   const colorClasses = {
     primary:
-      "border-blue-600 border-t-transparent dark:border-blue-500 dark:border-t-transparent",
+      "border-iddaa-600 border-t-transparent dark:border-iddaa-800 dark:border-t-transparent",
     secondary:
       "border-purple-600 border-t-transparent dark:border-purple-500 dark:border-t-transparent",
     muted:

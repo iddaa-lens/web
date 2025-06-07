@@ -33,7 +33,7 @@ export default function MainContentHeader({
                 placeholder={searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => onSearchChange?.(e.target.value)}
-                className="w-full bg-gray-100 dark:bg-gray-800 rounded-full py-2.5 px-10 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-100"
+                className="w-full bg-gray-100 dark:bg-gray-800 rounded-full py-2.5 px-10 text-sm focus:outline-none focus:ring-2 focus:ring-iddaa-600 dark:text-gray-100"
                 aria-label="Search"
               />
               <Search

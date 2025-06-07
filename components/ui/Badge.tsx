@@ -7,7 +7,7 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-blue-600 text-white dark:bg-blue-600 dark:text-white",
+        default: "bg-iddaa-600 text-white dark:bg-iddaa-800 dark:text-white",
         secondary:
           "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
         outline: "border bg-transparent text-gray-900 dark:text-gray-100",
@@ -50,7 +50,7 @@ function Badge({
           "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
         green:
           "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-        blue: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
+        blue: "bg-iddaa-100 text-iddaa-800 dark:bg-iddaa-900 dark:text-iddaa-300",
         purple:
           "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
         pink: "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300",

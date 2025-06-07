@@ -5,21 +5,23 @@ import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-blue-400",
+  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700",
+          "bg-iddaa-600 text-white hover:bg-iddaa-700 dark:bg-iddaa-800 dark:hover:bg-iddaa-600",
         destructive:
-          "bg-red-600 text-white hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700",
+          "bg-red-600 text-white hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600",
         outline:
-          "border border-gray-300 bg-transparent hover:bg-gray-100 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-gray-50",
+          "border border-gray-300 bg-transparent hover:bg-iddaa-50 hover:text-iddaa-900 dark:border-gray-600 dark:hover:bg-iddaa-950 dark:hover:text-white",
         secondary:
-          "bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600",
+          "bg-iddaa-50 text-iddaa-900 hover:bg-iddaa-100 dark:bg-iddaa-950 dark:text-white dark:hover:bg-iddaa-900",
         ghost:
-          "hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50",
-        link: "text-blue-600 underline-offset-4 hover:underline dark:text-blue-400",
+          "hover:bg-iddaa-50 hover:text-iddaa-900 dark:hover:bg-iddaa-950 dark:hover:text-white",
+        link: "text-iddaa-600 underline-offset-4 hover:underline dark:text-iddaa-800",
+        success:
+          "bg-iddaa-500 text-white hover:bg-iddaa-600 dark:bg-iddaa-400 dark:hover:bg-iddaa-500",
       },
       size: {
         default: "h-10 px-4 py-2",

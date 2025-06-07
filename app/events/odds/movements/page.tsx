@@ -344,7 +344,7 @@ export default function OddsMovementsPage() {
                   </SelectItem>
                   <SelectItem value="scheduled">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-blue-500" />
+                      <Clock className="w-4 h-4 text-iddaa-600" />
                       Programlanmış Maçlar
                     </div>
                   </SelectItem>
@@ -364,8 +364,8 @@ export default function OddsMovementsPage() {
                     <span className="text-red-600 dark:text-red-400">{groupedEvents.filter(e => e.is_live).length} canlı</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-blue-500" />
-                    <span className="text-blue-600 dark:text-blue-400">{groupedEvents.filter(e => !e.is_live).length} programlanmış</span>
+                    <Clock className="w-3 h-3 text-iddaa-600" />
+                    <span className="text-iddaa-600 dark:text-iddaa-800">{groupedEvents.filter(e => !e.is_live).length} programlanmış</span>
                   </div>
                 </div>
               </div>
@@ -373,7 +373,7 @@ export default function OddsMovementsPage() {
             <Button
               variant="ghost"
               onClick={resetFilters}
-              className="text-blue-600 dark:text-blue-400"
+              className="text-iddaa-600 dark:text-iddaa-800"
             >
               Filtreleri Temizle
             </Button>
@@ -409,13 +409,13 @@ export default function OddsMovementsPage() {
             filteredEvents.map((event) => (
               <div
                 key={event.event_slug}
-                className="group bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200"
+                className="group bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg hover:border-iddaa-300 dark:hover:border-iddaa-600 transition-all duration-200"
               >
                 {/* Header with event info and live status */}
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
-                      <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <h3 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-iddaa-600 dark:group-hover:text-iddaa-800 transition-colors">
                         {event.match}
                       </h3>
                       {event.is_live && (
@@ -441,7 +441,7 @@ export default function OddsMovementsPage() {
                     <div className="flex items-center gap-4 mb-3">
                       <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                         <div className="flex items-center gap-1">
-                          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                          <span className="w-2 h-2 bg-iddaa-600 rounded-full"></span>
                           <span className="font-medium">{event.league}</span>
                           {event.league_country && (
                             <span className="text-xs">
@@ -458,9 +458,9 @@ export default function OddsMovementsPage() {
 
                     {/* Event summary info */}
                     <div className="flex items-center gap-3">
-                      <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 px-3 py-1.5 rounded-full">
-                        <TrendingUp className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                        <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                      <div className="inline-flex items-center gap-2 bg-iddaa-100 dark:bg-iddaa-900/30 px-3 py-1.5 rounded-full">
+                        <TrendingUp className="w-4 h-4 text-iddaa-600 dark:text-iddaa-800" />
+                        <span className="text-sm font-medium text-iddaa-700 dark:text-iddaa-300">
                           {event.movement_count} hareket
                         </span>
                       </div>
@@ -509,7 +509,7 @@ export default function OddsMovementsPage() {
                           {movement.outcome && (
                             <>
                               <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                              <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+                              <span className="text-sm text-iddaa-600 dark:text-iddaa-800 font-medium">
                                 {movement.outcome}
                               </span>
                             </>
@@ -527,7 +527,7 @@ export default function OddsMovementsPage() {
                             movement.direction === "STEAMING"
                               ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
                               : movement.direction === "SHORTENING"
-                              ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                              ? "bg-iddaa-100 text-iddaa-700 dark:bg-iddaa-900/30 dark:text-iddaa-400"
                               : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
                           }`}
                         >

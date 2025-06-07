@@ -29,7 +29,7 @@ export default function Navigation() {
               href={item.href}
               className={`${
                 isActive(item.href)
-                  ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                  ? "border-iddaa-500 text-iddaa-600 dark:text-iddaa-400"
                   : "border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-600"
               } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
               aria-current={isActive(item.href) ? "page" : undefined}
