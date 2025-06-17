@@ -42,7 +42,7 @@ const buttonVariants = cva(
         iconSm: "h-8 w-8 p-1.5",
         // Custom sizes
         odds: "w-12 py-1 text-xs",
-        sport: "w-28 h-20 p-3",
+        sport: "w-32 h-24 p-3",
         navMenu: "px-6 py-3 text-sm",
       },
       fullWidth: {

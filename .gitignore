@@ -40,3 +40,8 @@ k8s/
 
 # Deployment scripts
 deploy.sh
+
+# Test coverage
+coverage/
+*.lcov
+.nyc_output/

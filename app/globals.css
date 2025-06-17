@@ -184,6 +184,20 @@ main, p, span, div:not(.no-select) {
   }
 }
 
+/* Animations */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
 /* Rest of your existing CSS remains unchanged */
 @theme inline {
   --color-background: var(--background);

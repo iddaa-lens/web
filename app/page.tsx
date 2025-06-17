@@ -21,16 +21,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useDarkMode } from "@/hooks/useDarkMode";
-
-// Mock data interfaces
-interface SportCategory {
-  id: string;
-  name: string;
-  icon: string;
-  count: number;
-  isPopular?: boolean;
-  predictions?: number;
-}
+import { SportsResponsive } from "@/components/sports";
 
 interface LiveMatch {
   id: string;
@@ -55,56 +46,6 @@ interface TrendingMatch {
 }
 
 // Mock data
-const sportCategories: SportCategory[] = [
-  {
-    id: "all",
-    name: "Tümü",
-    icon: "🏆",
-    count: 2468,
-    isPopular: true,
-    predictions: 45,
-  },
-  {
-    id: "football",
-    name: "Futbol",
-    icon: "⚽",
-    count: 1247,
-    isPopular: true,
-    predictions: 38,
-  },
-  {
-    id: "basketball",
-    name: "Basketbol",
-    icon: "🏀",
-    count: 324,
-    isPopular: true,
-    predictions: 22,
-  },
-  {
-    id: "tennis",
-    name: "Tenis",
-    icon: "🎾",
-    count: 189,
-    isPopular: true,
-    predictions: 15,
-  },
-  {
-    id: "volleyball",
-    name: "Voleybol",
-    icon: "🏐",
-    count: 89,
-    predictions: 12,
-  },
-  { id: "hockey", name: "Hokey", icon: "🏒", count: 76, predictions: 10 },
-  {
-    id: "esports",
-    name: "E-Spor",
-    icon: "🎮",
-    count: 156,
-    isPopular: true,
-    predictions: 28,
-  },
-];
 
 const liveMatches: LiveMatch[] = [
   {
@@ -175,7 +116,7 @@ const trendingMatches: TrendingMatch[] = [
 export default function HomePage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedSport, setSelectedSport] = useState<string>("all");
+  const [selectedSports, setSelectedSports] = useState<string[]>(["all"]);
   const [showSearch, setShowSearch] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { isDarkMode, toggleDarkMode, mounted } = useDarkMode();
@@ -369,39 +310,16 @@ export default function HomePage() {
         </div>
 
         {/* Sports Categories */}
-        <div className="mb-8">
-          <div className="flex flex-wrap justify-center gap-2">
-            {sportCategories.map((sport) => (
-              <Button
-                key={sport.id}
-                onClick={() => setSelectedSport(sport.id)}
-                variant={
-                  selectedSport === sport.id ? "sportSelected" : "sportDefault"
-                }
-                size="sport"
-                className="rounded-lg"
-              >
-                {sport.isPopular && (
-                  <div className="absolute -top-1 -right-1">
-                    <div className="bg-orange-500 text-white text-[10px] px-1.5 py-0.5 rounded flex items-center gap-0.5">
-                      <Flame className="w-2.5 h-2.5" />
-                      HOT
-                    </div>
-                  </div>
-                )}
-                <div className="flex flex-col items-center justify-center">
-                  <div className="text-xl mb-1">{sport.icon}</div>
-                  <div className="text-xs font-medium">{sport.name}</div>
-                  <div className="text-[10px] opacity-75">
-                    {sport.count} maç
-                  </div>
-                  <div className="text-[10px] opacity-75">
-                    {sport.predictions || 10} tahmin
-                  </div>
-                </div>
-              </Button>
-            ))}
-          </div>
+        <div className="mb-8 flex justify-center">
+          <SportsResponsive
+            selectedSports={selectedSports}
+            onSportsSelect={setSelectedSports}
+            showCounts={true}
+            showPredictions={true}
+            showHotBadge={true}
+            variant="grid"
+            spacing="tight"
+          />
         </div>
       </div>
 
