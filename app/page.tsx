@@ -22,20 +22,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { useDarkMode } from "@/hooks/useDarkMode";
 import { SportsResponsive } from "@/components/sports";
-
-interface LiveMatch {
-  id: string;
-  homeTeam: string;
-  awayTeam: string;
-  homeScore: number;
-  awayScore: number;
-  league: string;
-  minute: number;
-  status: string;
-  homeOdds: number;
-  drawOdds: number;
-  awayOdds: number;
-}
+import { Events, mockEvents } from "@/components/events";
 
 interface TrendingMatch {
   id: string;
@@ -44,50 +31,6 @@ interface TrendingMatch {
   change: number;
   time: string;
 }
-
-// Mock data
-
-const liveMatches: LiveMatch[] = [
-  {
-    id: "1",
-    homeTeam: "Fenerbahçe",
-    awayTeam: "Beşiktaş",
-    homeScore: 2,
-    awayScore: 1,
-    league: "Süper Lig",
-    minute: 78,
-    status: "LIVE",
-    homeOdds: 1.85,
-    drawOdds: 3.2,
-    awayOdds: 4.5,
-  },
-  {
-    id: "2",
-    homeTeam: "Real Madrid",
-    awayTeam: "Barcelona",
-    homeScore: 0,
-    awayScore: 0,
-    league: "La Liga",
-    minute: 23,
-    status: "LIVE",
-    homeOdds: 2.4,
-    drawOdds: 3.1,
-    awayOdds: 2.9,
-  },
-  {
-    id: "3",
-    homeTeam: "Manchester City",
-    awayTeam: "Arsenal",
-    homeScore: 1,
-    awayScore: 1,
-    league: "Premier League",
-    minute: 67,
-    status: "LIVE",
-    homeOdds: 1.95,
-    drawOdds: 3.4,
-    awayOdds: 3.85,
-  },
-];
 
 const trendingMatches: TrendingMatch[] = [
   {
@@ -326,12 +269,12 @@ export default function HomePage() {
       {/* Content Sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Live Matches */}
+          {/* Events Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
                 <Activity className="w-4 h-4 text-red-500" />
-                Canlı Maçlar
+                Maçlar
               </h2>
               <Button
                 onClick={() => router.push("/events")}
@@ -344,79 +287,19 @@ export default function HomePage() {
               </Button>
             </div>
 
-            <div className="space-y-2">
-              {liveMatches.map((match) => (
-                <div
-                  key={match.id}
-                  className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors cursor-pointer"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      {/* Time and League */}
-                      <div className="w-24 flex-shrink-0">
-                        <div className="flex items-center gap-1 text-red-500 mb-1">
-                          <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
-                          <span className="text-[10px] font-medium">
-                            {match.minute}&apos;
-                          </span>
-                        </div>
-                        <div className="text-[10px] text-gray-500 dark:text-gray-400">
-                          {match.league}
-                        </div>
-                      </div>
-
-                      {/* Home Team */}
-                      <div className="w-48 flex items-center justify-start gap-2">
-                        <div className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded-full flex-shrink-0"></div>
-                        <span className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                          {match.homeTeam}
-                        </span>
-                      </div>
-
-                      {/* Score */}
-                      <div className="w-20 text-center flex-shrink-0">
-                        <span className="text-base font-bold text-gray-900 dark:text-white">
-                          {match.homeScore} - {match.awayScore}
-                        </span>
-                      </div>
-
-                      {/* Away Team */}
-                      <div className="w-48 flex items-center justify-end gap-2">
-                        <span className="text-sm font-medium text-gray-900 dark:text-white truncate text-right">
-                          {match.awayTeam}
-                        </span>
-                        <div className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded-full flex-shrink-0"></div>
-                      </div>
-                    </div>
-
-                    {/* Odds */}
-                    <div className="flex gap-1.5">
-                      <Button
-                        variant="odds"
-                        size="odds"
-                        className="rounded font-medium"
-                      >
-                        {match.homeOdds}
-                      </Button>
-                      <Button
-                        variant="odds"
-                        size="odds"
-                        className="rounded font-medium"
-                      >
-                        {match.drawOdds}
-                      </Button>
-                      <Button
-                        variant="odds"
-                        size="odds"
-                        className="rounded font-medium"
-                      >
-                        {match.awayOdds}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <Events
+              events={mockEvents}
+              selectedSports={selectedSports}
+              onEventClick={(event) => router.push(`/events/${event.id}`)}
+              onOddsClick={(event, market) => console.log('Bet on', event.id, market)}
+              showPredictions={true}
+              showOdds={true}
+              showLeague={true}
+              showTime={true}
+              variant="list"
+              spacing="tight"
+              maxItems={6}
+            />
           </div>
 
           {/* Trending Matches */}
