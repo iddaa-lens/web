@@ -1,0 +1,24 @@
+.App {
+  /* ...existing properties... */
+  font-size: 14px; /* Base font size */
+}
+
+.container {
+  /* ...existing properties... */
+  padding: 16px; /* Reduced padding */
+  max-width: 1200px; /* Slightly smaller max width */
+}
+
+.main-content {
+  /* ...existing properties... */
+  gap: 16px; /* Reduced gap between sections */
+}
+
+.card {
+  /* ...existing properties... */
+  padding: 16px; /* Reduced padding */
+  border-radius: 6px; /* Smaller border radius */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* ...existing code... */

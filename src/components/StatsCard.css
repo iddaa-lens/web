@@ -1,0 +1,22 @@
+.stats-card {
+  /* ...existing properties... */
+  padding: 16px; /* Reduced padding */
+  margin-bottom: 16px; /* Reduced margin */
+}
+
+.stats-card h3 {
+  font-size: 1rem; /* Smaller title */
+  margin-bottom: 12px; /* Reduced margin */
+}
+
+.stats-card .stat-item {
+  font-size: 12px; /* Smaller stat text */
+  margin-bottom: 6px; /* Reduced spacing */
+}
+
+.stats-card .stat-value {
+  font-size: 14px; /* Smaller value text */
+  font-weight: 600;
+}
+
+/* ...existing code... */

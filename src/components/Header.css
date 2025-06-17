@@ -1,0 +1,17 @@
+.header {
+  /* ...existing properties... */
+  padding: 12px 20px; /* Reduced padding */
+  font-size: 14px; /* Smaller font */
+}
+
+.header h1 {
+  font-size: 1.5rem; /* Reduced header title */
+  margin: 0;
+}
+
+.header .nav-links {
+  font-size: 13px; /* Smaller navigation text */
+  gap: 16px; /* Reduced gap between links */
+}
+
+/* ...existing code... */

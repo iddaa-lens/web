@@ -24,12 +24,26 @@ const buttonVariants = cva(
         link: "text-iddaa-600 underline-offset-4 hover:underline dark:text-iddaa-800",
         success:
           "bg-iddaa-500 text-white hover:bg-iddaa-600 dark:bg-iddaa-400 dark:hover:bg-iddaa-500",
+        // Custom variants for our app
+        primary: "bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200",
+        odds: "bg-white border border-gray-200 text-gray-900 hover:bg-gray-50 dark:bg-gray-800/50 dark:border-gray-700/50 dark:text-gray-100 dark:hover:bg-gray-700/50",
+        sport: "border transition-all hover:scale-105 relative",
+        sportSelected: "bg-gray-900 dark:bg-gray-100 border-gray-900 dark:border-gray-300 text-white dark:text-gray-900",
+        sportDefault: "bg-white dark:bg-gray-800/50 border-gray-200 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 text-gray-900 dark:text-gray-100",
+        navIcon: "hover:bg-gray-100 dark:hover:bg-gray-800",
+        navMenu: "w-full text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 justify-start",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-8 px-3 text-xs",
+        xs: "h-7 px-3 py-1.5 text-xs",
         lg: "h-12 px-8",
         icon: "h-10 w-10",
+        iconSm: "h-8 w-8 p-1.5",
+        // Custom sizes
+        odds: "w-12 py-1 text-xs",
+        sport: "w-28 h-20 p-3",
+        navMenu: "px-6 py-3 text-sm",
       },
       fullWidth: {
         true: "w-full",

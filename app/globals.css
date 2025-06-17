@@ -12,6 +12,8 @@
   --color-iddaa-800: #00C766;
   --color-iddaa-900: #1B5E20;
   --color-iddaa-950: #0A2F0A;
+  
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 /* Mobile-first CSS variables */
@@ -50,6 +52,33 @@
   --color-success: #66BB6A;           /* Muted green for positive */
   --color-warning: #FFB74D;           /* Lighter orange */
   --color-error: #EF5350;             /* Lighter red */
+}
+
+/* Smooth transitions for theme changes */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure proper dark mode backgrounds */
+html.dark {
+  color-scheme: dark;
+}
+
+/* Dark mode specific styles for better contrast */
+.dark .bg-gray-50 {
+  background-color: rgb(17 24 39);
+}
+
+.dark .bg-gray-100 {
+  background-color: rgb(31 41 55);
+}
+
+.dark .hover\:bg-gray-50:hover {
+  background-color: rgb(31 41 55);
+}
+
+.dark .hover\:bg-gray-100:hover {
+  background-color: rgb(55 65 81);
 }
 
 /* Prevent horizontal scroll on mobile */

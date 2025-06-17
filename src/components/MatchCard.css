@@ -1,0 +1,41 @@
+.match-card {
+  /* ...existing properties... */
+  padding: 8px 12px; /* Further reduced vertical padding */
+  margin-bottom: 8px; /* Reduced spacing between cards */
+  line-height: 1.3; /* Tighter line height */
+}
+
+.match-card h3 {
+  font-size: 0.9rem; /* Smaller title */
+  margin-bottom: 4px; /* Minimal margin */
+  line-height: 1.2; /* Tighter line height */
+}
+
+.match-card .match-info {
+  font-size: 11px; /* Smaller info text */
+  margin-bottom: 4px; /* Minimal spacing */
+  line-height: 1.2; /* Tighter line height */
+}
+
+.match-card .teams {
+  margin-bottom: 4px; /* Minimal spacing */
+}
+
+.match-card .odds {
+  font-size: 10px; /* Smaller odds text */
+  padding: 2px 6px; /* Much smaller padding */
+  margin: 2px; /* Minimal margin */
+}
+
+.match-card .prediction {
+  font-size: 11px; /* Smaller prediction text */
+  margin-top: 4px; /* Minimal margin */
+  line-height: 1.2; /* Tighter line height */
+}
+
+.match-card .match-date {
+  font-size: 10px; /* Smaller date text */
+  margin-bottom: 4px; /* Minimal spacing */
+}
+
+/* ...existing code... */

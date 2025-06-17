@@ -1,0 +1,19 @@
+body {
+  /* ...existing properties... */
+  font-size: 14px; /* Reduced from default */
+}
+
+h1 {
+  font-size: 1.8rem; /* Reduced */
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.4rem; /* Reduced */
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 1.1rem; /* Reduced */
+  font-weight: 500;
+}
