@@ -22,6 +22,21 @@ npm run start    # Start production server
 npm run lint     # Run ESLint
 ```
 
+### Build & Deployment
+```bash
+# Using Makefile (recommended)
+make help                                    # Show all available commands
+make dev                                     # Start development server
+make build                                   # Build Next.js application
+make lint                                    # Run ESLint
+make docker-build-local                      # Build Docker image locally
+make docker-build ORG=registry.io TAG=v1.0   # Build Docker image with tags
+make docker-push ORG=registry.io TAG=v1.0    # Push Docker image
+make deploy                                  # Deploy to Kubernetes using deploy.sh
+make k8s-status                              # Show Kubernetes deployment status
+make k8s-logs                                # Show application logs
+```
+
 ### Common Development Tasks
 ```bash
 # Install dependencies
@@ -59,14 +74,24 @@ This is a Next.js 15 web application using App Router for a betting analysis pla
 - **Type Safety**: Strict TypeScript configuration with interfaces for all data structures
 - **Component Library**: Custom UI components wrapping Radix UI primitives
 - **API Integration**: Direct fetch calls without abstraction layer or data fetching library
+- **Containerization**: Docker with standalone Next.js output for production deployment
+- **Orchestration**: Kubernetes-ready with full manifest suite
 
 ### API Integration Points
 The frontend expects these backend endpoints:
 - `/api/odds/big-movers` - Returns matches with significant odds changes
 - `/api/events/upcoming` - Returns events within 6-hour window
 
+### Deployment Configuration
+- **Docker**: Multi-stage build with standalone output mode
+- **Kubernetes**: Deployment, Service, and Ingress manifests in `/k8s/`
+- **Registry**: Configured for Azure Container Registry (iddaalens.azurecr.io)
+- **SSL/TLS**: Automatic certificate management via cert-manager
+- **Domains**: iddaalens.com and www.iddaalens.com
+
 ### Important Notes
 - No testing framework is configured - avoid suggesting test-specific commands
 - The app is Turkish-language focused (navigation, UI text)
 - Image domains are whitelisted in next.config.ts for external sports images
 - Safe area insets are handled for modern mobile devices
+- The `/src/` directory contains legacy React components and should be ignored
