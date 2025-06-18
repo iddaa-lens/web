@@ -3,9 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  TrendingUp,
   ArrowRight,
-  Flame,
   Activity,
   Calendar,
   Brain,
@@ -18,38 +16,8 @@ import { Button } from "@/components/ui/Button";
 import { SportsResponsive } from "@/components/sports";
 import { Events, mockEvents } from "@/components/events";
 import { Navigation } from "@/components/navigation";
+import { AIPredictions, mockAIPredictions } from "@/components/ai-predictions";
 
-interface TrendingMatch {
-  id: string;
-  teams: string;
-  league: string;
-  change: number;
-  time: string;
-}
-
-const trendingMatches: TrendingMatch[] = [
-  {
-    id: "1",
-    teams: "Liverpool - Chelsea",
-    league: "Premier League",
-    change: 15.2,
-    time: "20:00",
-  },
-  {
-    id: "2",
-    teams: "Inter - Milan",
-    league: "Serie A",
-    change: 12.8,
-    time: "21:45",
-  },
-  {
-    id: "3",
-    teams: "Dortmund - Bayern",
-    league: "Bundesliga",
-    change: 18.5,
-    time: "19:30",
-  },
-];
 
 export default function HomePage() {
   const router = useRouter();
@@ -224,50 +192,29 @@ export default function HomePage() {
             />
           </div>
 
-          {/* Trending Matches */}
+          {/* AI Predictions */}
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
-                <Flame className="w-4 h-4 text-orange-500" />
-                Popüler
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
+                <Brain className="w-4 h-4 text-purple-500" />
+                AI Tahminleri
               </h2>
+              <Button
+                onClick={() => router.push("/predictions")}
+                variant="link"
+                size="xs"
+                rightIcon={<ArrowRight className="w-3 h-3" />}
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-0 h-auto"
+              >
+                Tümünü gör
+              </Button>
             </div>
 
-            <div className="space-y-2">
-              {trendingMatches.map((match) => (
-                <div
-                  key={match.id}
-                  className="bg-gray-50 dark:bg-gray-900/50 rounded-md p-3 hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors cursor-pointer"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="font-medium text-gray-900 dark:text-white text-xs">
-                        {match.teams}
-                      </div>
-                      <div className="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">
-                        {match.league} • {match.time}
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-0.5 text-green-600 dark:text-green-400">
-                      <TrendingUp className="w-3 h-3" />
-                      <span className="text-xs font-medium">
-                        {match.change}%
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <Button
-              onClick={() => router.push("/events/odds/movements")}
-              variant="primary"
-              size="sm"
-              fullWidth
-              className="mt-4 rounded-md font-medium"
-            >
-              Tüm oran hareketlerini gör
-            </Button>
+            <AIPredictions
+              predictions={mockAIPredictions}
+              onPredictionClick={(prediction) => router.push(`/predictions/${prediction.slug}`)}
+              maxItems={5}
+            />
           </div>
         </div>
       </div>
