@@ -102,6 +102,22 @@ body {
   user-select: none;
 }
 
+/* Enhanced touch targets for mobile */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .touch-target {
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
 /* Allow text selection in content areas */
 main, p, span, div:not(.no-select) {
   -webkit-user-select: text;

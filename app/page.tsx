@@ -3,26 +3,21 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  Search,
   TrendingUp,
   ArrowRight,
   Flame,
   Activity,
-  Menu,
-  X,
   Calendar,
   Brain,
   Bot,
   Users,
   Trophy,
   Gamepad2,
-  Sun,
-  Moon,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { useDarkMode } from "@/hooks/useDarkMode";
 import { SportsResponsive } from "@/components/sports";
 import { Events, mockEvents } from "@/components/events";
+import { Navigation } from "@/components/navigation";
 
 interface TrendingMatch {
   id: string;
@@ -58,89 +53,16 @@ const trendingMatches: TrendingMatch[] = [
 
 export default function HomePage() {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedSports, setSelectedSports] = useState<string[]>(["all"]);
-  const [showSearch, setShowSearch] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { isDarkMode, toggleDarkMode, mounted } = useDarkMode();
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-950 transition-colors duration-300">
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-12">
-            {/* Left side */}
-            <div className="flex items-center gap-3">
-              <h1 className="text-lg font-semibold">IddaaLens</h1>
-              <Button
-                onClick={() => setDrawerOpen(!drawerOpen)}
-                variant="navIcon"
-                size="iconSm"
-              >
-                <Menu className="w-5 h-5" />
-              </Button>
-            </div>
-
-            {/* Right side */}
-            <div className="flex items-center gap-3">
-              {showSearch ? (
-                <div className="flex items-center gap-2">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Ara..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      autoFocus
-                      onBlur={() => {
-                        if (!searchQuery) setShowSearch(false);
-                      }}
-                      className="w-48 sm:w-64 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md py-1.5 pl-3 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white focus:border-transparent transition-all"
-                    />
-                  </div>
-                  <Button
-                    onClick={() => setShowSearch(false)}
-                    variant="navIcon"
-                    size="iconSm"
-                  >
-                    <X className="w-4 h-4" />
-                  </Button>
-                </div>
-              ) : (
-                <>
-                  <Button
-                    onClick={() => setShowSearch(true)}
-                    variant="navIcon"
-                    size="iconSm"
-                    className="rounded-md"
-                  >
-                    <Search className="w-5 h-5" />
-                  </Button>
-                  {mounted && (
-                    <Button
-                      onClick={toggleDarkMode}
-                      variant="navIcon"
-                      size="iconSm"
-                      className="rounded-md"
-                      aria-label="Toggle dark mode"
-                    >
-                      {isDarkMode ? (
-                        <Sun className="w-5 h-5 text-yellow-500" />
-                      ) : (
-                        <Moon className="w-5 h-5 text-gray-700" />
-                      )}
-                    </Button>
-                  )}
-                  <Button variant="primary" size="xs">
-                    Kayıt Ol
-                  </Button>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation 
+        onMenuClick={() => setDrawerOpen(!drawerOpen)}
+        onRegisterClick={() => router.push("/register")}
+      />
 
       {/* Left Drawer */}
       <div
@@ -238,7 +160,7 @@ export default function HomePage() {
       </div>
 
       {/* Spacer for fixed header */}
-      <div className="h-12"></div>
+      <div className="h-12 sm:h-14"></div>
 
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
