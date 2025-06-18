@@ -5,17 +5,13 @@ import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   Activity,
-  Calendar,
   Brain,
-  Bot,
-  Users,
-  Trophy,
-  Gamepad2,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { SportsResponsive } from "@/components/sports";
 import { Events, mockEvents } from "@/components/events";
 import { Navigation } from "@/components/navigation";
+import { LeftDrawer } from "@/components/left-drawer";
 import { AIPredictions, mockAIPredictions } from "@/components/ai-predictions";
 
 
@@ -33,99 +29,10 @@ export default function HomePage() {
       />
 
       {/* Left Drawer */}
-      <div
-        className={`fixed inset-0 z-40 transition-opacity ${
-          drawerOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <div
-          className="absolute inset-0 bg-black/50"
-          onClick={() => setDrawerOpen(false)}
-        />
-      </div>
-
-      <div
-        className={`fixed top-12 left-0 h-[calc(100vh-3rem)] w-64 bg-white dark:bg-gray-950 z-50 transform transition-all duration-300 ${
-          drawerOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="h-full flex items-center justify-center">
-          <nav className="space-y-2">
-            <Button
-              onClick={() => {
-                router.push("/events");
-                setDrawerOpen(false);
-              }}
-              variant="navMenu"
-              size="navMenu"
-              leftIcon={<Calendar className="w-4 h-4" />}
-              className="rounded-md"
-            >
-              Etkinlikler
-            </Button>
-            <Button
-              onClick={() => {
-                router.push("/predictions");
-                setDrawerOpen(false);
-              }}
-              variant="navMenu"
-              size="navMenu"
-              leftIcon={<Brain className="w-4 h-4" />}
-              className="rounded-md"
-            >
-              Tahminler
-            </Button>
-            <Button
-              onClick={() => {
-                router.push("/ai-models");
-                setDrawerOpen(false);
-              }}
-              variant="navMenu"
-              size="navMenu"
-              leftIcon={<Bot className="w-4 h-4" />}
-              className="rounded-md"
-            >
-              AI Modelleri
-            </Button>
-            <Button
-              onClick={() => {
-                router.push("/teams");
-                setDrawerOpen(false);
-              }}
-              variant="navMenu"
-              size="navMenu"
-              leftIcon={<Users className="w-4 h-4" />}
-              className="rounded-md"
-            >
-              Takımlar
-            </Button>
-            <Button
-              onClick={() => {
-                router.push("/leagues");
-                setDrawerOpen(false);
-              }}
-              variant="navMenu"
-              size="navMenu"
-              leftIcon={<Trophy className="w-4 h-4" />}
-              className="rounded-md"
-            >
-              Ligler
-            </Button>
-            <Button
-              onClick={() => {
-                router.push("/sports");
-                setDrawerOpen(false);
-              }}
-              variant="navMenu"
-              size="navMenu"
-              leftIcon={<Gamepad2 className="w-4 h-4" />}
-              className="rounded-md"
-            >
-              Sporlar
-            </Button>
-          </nav>
-        </div>
-      </div>
+      <LeftDrawer 
+        open={drawerOpen} 
+        onClose={() => setDrawerOpen(false)} 
+      />
 
       {/* Spacer for fixed header */}
       <div className="h-12 sm:h-14"></div>
