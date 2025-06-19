@@ -8,6 +8,7 @@ import { LeftDrawer } from "@/components/left-drawer";
 import { HeroSection } from "@/components/hero-section";
 import { mockAIPredictions } from "@/components/ai-predictions";
 import { ContentSections } from "@/components/content-sections";
+import { Footer } from "@/components/footer";
 
 
 export default function HomePage() {
@@ -44,6 +45,9 @@ export default function HomePage() {
         predictions={mockAIPredictions}
         selectedSports={selectedSports}
       />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
