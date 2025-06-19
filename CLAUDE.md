@@ -42,10 +42,12 @@ make k8s-logs                                # Show application logs
 # Install dependencies
 npm install
 
+# Run tests
+npm test                 # Run Jest tests once
+npm test:watch           # Run Jest tests in watch mode
+
 # Check TypeScript types (no dedicated command, use build)
 npm run build
-
-# No test commands available - testing framework not configured
 ```
 
 ## Architecture Overview
@@ -89,9 +91,15 @@ The frontend expects these backend endpoints:
 - **SSL/TLS**: Automatic certificate management via cert-manager
 - **Domains**: iddaalens.com and www.iddaalens.com
 
+### Testing Setup
+- **Framework**: Jest with React Testing Library and Next.js integration
+- **Configuration**: jest.config.js with custom path mappings
+- **Test Location**: `__tests__/` directory mirroring component structure
+- **Commands**: `npm test` for single run, `npm test:watch` for watch mode
+
 ### Important Notes
-- No testing framework is configured - avoid suggesting test-specific commands
 - The app is Turkish-language focused (navigation, UI text)
 - Image domains are whitelisted in next.config.ts for external sports images
 - Safe area insets are handled for modern mobile devices
 - The `/src/` directory contains legacy React components and should be ignored
+- Tailwind CSS v4 uses custom Iddaa brand colors (--color-iddaa-primary, --color-iddaa-secondary)

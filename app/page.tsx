@@ -8,10 +8,10 @@ import {
   Brain,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { SportsResponsive } from "@/components/sports";
 import { Events, mockEvents } from "@/components/events";
 import { Navigation } from "@/components/navigation";
 import { LeftDrawer } from "@/components/left-drawer";
+import { HeroSection } from "@/components/hero-section";
 import { AIPredictions, mockAIPredictions } from "@/components/ai-predictions";
 
 
@@ -38,30 +38,10 @@ export default function HomePage() {
       <div className="h-12 sm:h-14"></div>
 
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-            Akıllı bahis analizi
-          </h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Yapay zeka destekli tahminler ve gerçek zamanlı oran takibi ile
-            kazanma şansınızı artırın.
-          </p>
-        </div>
-
-        {/* Sports Categories */}
-        <div className="mb-8 flex justify-center">
-          <SportsResponsive
-            selectedSports={selectedSports}
-            onSportsSelect={setSelectedSports}
-            showCounts={true}
-            showPredictions={true}
-            showHotBadge={true}
-            variant="grid"
-            spacing="tight"
-          />
-        </div>
-      </div>
+      <HeroSection 
+        selectedSports={selectedSports}
+        onSportsSelect={setSelectedSports}
+      />
 
       {/* Content Sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
