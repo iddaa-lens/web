@@ -2,17 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  ArrowRight,
-  Activity,
-  Brain,
-} from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { Events, mockEvents } from "@/components/events";
+import { mockEvents } from "@/components/events";
 import { Navigation } from "@/components/navigation";
 import { LeftDrawer } from "@/components/left-drawer";
 import { HeroSection } from "@/components/hero-section";
-import { AIPredictions, mockAIPredictions } from "@/components/ai-predictions";
+import { mockAIPredictions } from "@/components/ai-predictions";
+import { ContentSections } from "@/components/content-sections";
 
 
 export default function HomePage() {
@@ -44,67 +39,11 @@ export default function HomePage() {
       />
 
       {/* Content Sections */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Events Section */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
-                <Activity className="w-4 h-4 text-red-500" />
-                Maçlar
-              </h2>
-              <Button
-                onClick={() => router.push("/events")}
-                variant="link"
-                size="xs"
-                rightIcon={<ArrowRight className="w-3 h-3" />}
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-0 h-auto"
-              >
-                Tümünü gör
-              </Button>
-            </div>
-
-            <Events
-              events={mockEvents}
-              selectedSports={selectedSports}
-              onEventClick={(event) => router.push(`/events/${event.id}`)}
-              onOddsClick={(event, market) => console.log('Bet on', event.id, market)}
-              showPredictions={true}
-              showOdds={true}
-              showLeague={true}
-              showTime={true}
-              variant="list"
-              spacing="tight"
-              maxItems={6}
-            />
-          </div>
-
-          {/* AI Predictions */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
-                <Brain className="w-4 h-4 text-purple-500" />
-                AI Tahminleri
-              </h2>
-              <Button
-                onClick={() => router.push("/predictions")}
-                variant="link"
-                size="xs"
-                rightIcon={<ArrowRight className="w-3 h-3" />}
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-0 h-auto"
-              >
-                Tümünü gör
-              </Button>
-            </div>
-
-            <AIPredictions
-              predictions={mockAIPredictions}
-              onPredictionClick={(prediction) => router.push(`/predictions/${prediction.slug}`)}
-              maxItems={5}
-            />
-          </div>
-        </div>
-      </div>
+      <ContentSections 
+        events={mockEvents}
+        predictions={mockAIPredictions}
+        selectedSports={selectedSports}
+      />
     </div>
   );
 }
